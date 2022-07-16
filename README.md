@@ -32,6 +32,8 @@ This project is used by the following companies:
 
 ## In progress
 👩‍💻 I'm currently working on...
+1. Create an app flutter
+>> flutter create app
 
 🧠 I'm currently learning...
 
@@ -50,5 +52,10 @@ This project is used by the following companies:
 
 ## Authors
 
-- [@bkablam11](https://github.com/bkablam11/laundry_app)
+- [@bkablam11](https://bkablam11.github.io/)
 
+
+onPressed: () {
+setState(() {
+});
+},
