@@ -44,7 +44,7 @@ class _orderConfirmPageState extends State<orderConfirmPage> {
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 200,
+              height: 100,
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('asset/images/onBoard2.png')
@@ -93,7 +93,6 @@ class _orderConfirmPageState extends State<orderConfirmPage> {
             ),
             divider(),
             Column(
-
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("Date et heure du ramassage", style: headingStyle,),
@@ -107,14 +106,11 @@ class _orderConfirmPageState extends State<orderConfirmPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Mode de paiement", style: headingStyle,),
+                Text("Paiement", style: headingStyle,),
                 Text("Espèces", style: headingStyle.copyWith(
                     color: Colors.grey
                 ),),
               ],
-            ),
-            Expanded(
-              child: Container(),
             ),
             InkWell(
               onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>TrackOrderPage()));},
@@ -125,9 +121,9 @@ class _orderConfirmPageState extends State<orderConfirmPage> {
                     gradient: gradientStyle
                 ),
                 child: Center(
-                  child: Text("SUIVRE SA COMMANDE", style: contentStyle.copyWith(
+                  child: Text("SUIVRE COMMANDE", style: contentStyle.copyWith(
                       color: Colors.white,
-                      fontSize: 22
+                      fontSize: 17
                   ),),
                 ),
               ),

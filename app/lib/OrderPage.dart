@@ -27,7 +27,7 @@ class _orderPageState extends State<orderPage> {
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () {},
         ),
-        title: Text("Sélectionnez vos vêtements", style: TextStyle(
+        title: Text("VOTRE PANIER A LINGE", style: TextStyle(
             color: Colors.black
         ),),
         actions: [
@@ -48,7 +48,6 @@ class _orderPageState extends State<orderPage> {
                 categoryWidget("girl", "Femmes", false),
                 categoryWidget("child", "Enfants", false),
                 categoryWidget("oldman", "Autres", false),
-
               ],
             ),
             Expanded(
@@ -57,13 +56,8 @@ class _orderPageState extends State<orderPage> {
                   children: [
                     clothWidget("cloth1", "Pantalon", "15"),
                     clothWidget("cloth2", "Jeans", "10"),
-                    clothWidget("cloth3", "Vestes", "15"),
                     clothWidget("cloth4", "Chemise", "5"),
                     clothWidget("cloth5", "T-Shirt", "7"),
-                    clothWidget("cloth6", "Veston", "50"),
-                    clothWidget("cloth7", "Manteaux", "40"),
-                    clothWidget("cloth8", "Gillet", "15"),
-                    clothWidget("cloth9", "Pull-over", "17")
                   ],
                 ),
               ),
@@ -92,7 +86,7 @@ class _orderPageState extends State<orderPage> {
                     gradient: gradientStyle,
                   ),
                   child: Center(
-                    child: Text("SÉLECTIONNER LA DATE ET L'HEURE", style: TextStyle(
+                    child: Text("CHOIX DATE ET HEURE", style: TextStyle(
                         color: Colors.white,
                         fontSize: 22,
                         fontWeight: FontWeight.w700
@@ -134,8 +128,7 @@ class _orderPageState extends State<orderPage> {
                   children: [
                     Text("$name", style: headingStyle,),
                     Text("\$$price", style: headingStyle.copyWith(color: Colors.grey),),
-                    Text("Ajouter un commentaire", style: contentStyle.copyWith(color: Colors.orange),)
-
+                    Text("Commentaires", style: contentStyle.copyWith(color: Colors.orange),)
                   ],
                 ),
                 Text("\F45", style: headingStyle,),

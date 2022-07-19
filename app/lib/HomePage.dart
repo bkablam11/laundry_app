@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app/StyleScheme.dart';
 import 'OrderPage.dart';
+import 'package:app/TrackOrderPage.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -56,9 +57,10 @@ class _homePageState extends State<homePage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("BÉNISSEZ CETTE PAGAILLE", style: headingStyle),
+                            Text("NOTRE CREDO", style: headingStyle),
                             SizedBox(height: 5,),
-                            Text("Nous prennons vos vêtements et leur donnons un nouveau look.", style: TextStyle(
+                            Text("Vos vêtements, Notre Priorité",
+                              style: TextStyle(
                               fontSize: 16,
                             ),),
                           ],
@@ -70,7 +72,7 @@ class _homePageState extends State<homePage> {
                     right: 0,
                     child: Container(
                       height: 180,
-                      width: 180,
+                      width: 150,
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('asset/images/bannerImg.png')
@@ -137,8 +139,7 @@ class _homePageState extends State<homePage> {
                 children: [
                   Row(
                     children: [
-                      Text("DISPONIBILITÉ ", style: contentStyle,),
-                      Text("DISPONIBLE", style: contentStyle.copyWith(color: Colors.blue),)
+                      Text("DISPONIBILITÉ ", style: headingStyle,),
                     ],
                   ),
                   SizedBox(height: 10,),
@@ -147,61 +148,8 @@ class _homePageState extends State<homePage> {
               ),
             ),
             SizedBox(height: 10,),
-            Container(
-              padding: EdgeInsets.all(20),
-              width: MediaQuery.of(context).size.width,
-              color: Color(0xfff1ffff),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("VÉRIFIER L'ESTIMATION", style: contentStyle,),
-                  SizedBox(height: 10,),
-                  Text("Vous pouvez vérifier l'estimation du temps avec le prix", style: contentStyle,),
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      gradient: gradientStyle,
-                      shape: BoxShape.circle
-                  ),
-                  child: Text("+", style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 40
-                  ),),
-                )
-              ],
-            )
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.orange,
-        iconSize: 30,
-        onTap: (value) => {openRelevantPage(value)},
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.track_changes),
-              label: "Track Order"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.view_list),
-              label: "My Orders"
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.track_changes),
-            label: "Profile",
-          ),
-        ],
       ),
     );
   }

@@ -27,7 +27,7 @@ class _pickUpTimePageState extends State<pickUpTimePage> {
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () {},
         ),
-        title: Text("Choississez la date et l'heure", style: TextStyle(
+        title: Text("CHOIX DATE ET HEURE", style: TextStyle(
             color: Colors.black
         ),),
         actions: [
@@ -37,108 +37,107 @@ class _pickUpTimePageState extends State<pickUpTimePage> {
           )
         ],
       ),
-      body: Container(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Date de ramassage", style: headingStyle,),
-            SizedBox(height: 10,),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  dateWidget("Mer", "07 Aug", true),
-                  dateWidget("Jeu", "08 Aug", false),
-                  dateWidget("Ven", "09 Aug", false),
-                  dateWidget("Sam", "10 Aug", false),
-                  dateWidget("Lun", "12 Aug", false),
-                  dateWidget("Mar", "13 Aug", false)
-                ],
-              ),
-            ),
-            SizedBox(height: 15,),
-            Container(
-              height: 1,
-              color: Colors.grey,
-            ),
-            SizedBox(height: 15,),
-            Text("Heure de prise en charge", style: headingStyle,),
-            SizedBox(height: 15,),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  timeWidget("De 10h00 à 12h00", false),
-                  timeWidget("De 12h00 à 14h00", true),
-                  timeWidget("De 14h00 à 16h00", false),
-                  timeWidget("De 16h00 à 18h00", false),
-                ],
-              ),
-            ),
-            SizedBox(height: 20,),
-            Text("Delivery Date", style: headingStyle,),
-            SizedBox(height: 10,),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  dateWidget("Mer", "10 Aug", true),
-                  dateWidget("Jeu", "11 Aug", false),
-                  dateWidget("Ven", "12 Aug", false),
-                  dateWidget("Sam", "13 Aug", false),
-                  dateWidget("Lun", "14 Aug", false),
-                  dateWidget("Mar", "15 Aug", false)
-                ],
-              ),
-            ),
-            SizedBox(height: 15,),
-            Container(
-              height: 1,
-              color: Colors.grey,
-            ),
-            SizedBox(height: 15,),
-            Text("Temps de livraison", style: headingStyle,),
-            SizedBox(height: 15,),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  timeWidget("De 10h00 à 12h00", false),
-                  timeWidget("De 12h00 à 14h00", true),
-                  timeWidget("De 14h00 à 16h00", false),
-                  timeWidget("De 16h00 à 18h00", false),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Container(),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Montant total à payer", style: headingStyle,),
-                Text("\F22500", style: headingStyle,)
-              ],
-            ),
-            SizedBox(height: 10,),
-            InkWell(
-              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => OrderConfirmPage()));},
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                    gradient: gradientStyle
-                ),
-                child: Center(
-                  child: Text("ORDRE DE PLAYEMENT", style: contentStyle.copyWith(
-                      color: Colors.white,
-                      fontSize: 22
-                  ),),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Date de ramassage", style: headingStyle,),
+              SizedBox(height: 10,),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    dateWidget("Mer", "07 Aug", true),
+                    dateWidget("Jeu", "08 Aug", false),
+                    dateWidget("Ven", "09 Aug", false),
+                    dateWidget("Sam", "10 Aug", false),
+                    dateWidget("Lun", "12 Aug", false),
+                    dateWidget("Mar", "13 Aug", false)
+                  ],
                 ),
               ),
-            )
-          ],
+              SizedBox(height: 15,),
+              Container(
+                height: 1,
+                color: Colors.grey,
+              ),
+              SizedBox(height: 15,),
+              Text("Heure de prise en charge", style: headingStyle,),
+              SizedBox(height: 15,),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    timeWidget("De 10h00 à 12h00", false),
+                    timeWidget("De 12h00 à 14h00", true),
+                    timeWidget("De 14h00 à 16h00", false),
+                    timeWidget("De 16h00 à 18h00", false),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20,),
+              Text("Date de livraison", style: headingStyle,),
+              SizedBox(height: 10,),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    dateWidget("Mer", "10 Aug", true),
+                    dateWidget("Jeu", "11 Aug", false),
+                    dateWidget("Ven", "12 Aug", false),
+                    dateWidget("Sam", "13 Aug", false),
+                    dateWidget("Lun", "14 Aug", false),
+                    dateWidget("Mar", "15 Aug", false)
+                  ],
+                ),
+              ),
+              SizedBox(height: 15,),
+              Container(
+                height: 1,
+                color: Colors.grey,
+              ),
+              SizedBox(height: 15,),
+              Text("Heure de livraison", style: headingStyle,),
+              SizedBox(height: 15,),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    timeWidget("De 10h00 à 12h00", false),
+                    timeWidget("De 12h00 à 14h00", true),
+                    timeWidget("De 14h00 à 16h00", false),
+                    timeWidget("De 16h00 à 18h00", false),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Montant total à payer", style: headingStyle,),
+                  Text("\F22500", style: headingStyle,)
+                ],
+              ),
+              SizedBox(height: 10,),
+              InkWell(
+                onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => OrderConfirmPage()));},
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                      gradient: gradientStyle
+                  ),
+                  child: Center(
+                    child: Text("ORDRE DE PAYEMENT", style: contentStyle.copyWith(
+                        color: Colors.white,
+                        fontSize: 22
+                    ),),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -182,7 +181,6 @@ class _pickUpTimePageState extends State<pickUpTimePage> {
           Text(time, style: contentStyle.copyWith(
             color: (isActive) ? Colors.white : Colors.black,
           ),),
-
         ],
       ),
     );

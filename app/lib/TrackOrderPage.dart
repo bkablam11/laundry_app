@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'OrderConfirmPage.dart';
 import 'package:app/StyleScheme.dart';
+import 'package:app/HomePage.dart';
+import 'package:app/OrderPage.dart';
+
 
 
 class TrackOrderPage extends StatelessWidget {
@@ -43,7 +46,7 @@ class _trackOrderPageState extends State<trackOrderPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("N° de commande 1001", style: headingStyle,),
+            Text("N° COMMANDE 1001", style: headingStyle,),
             Text("Commande confirmée.", style: contentStyle.copyWith(
                 color: Colors.grey,
                 fontSize: 16
@@ -58,15 +61,14 @@ class _trackOrderPageState extends State<trackOrderPage> {
                 Container(
                   margin: EdgeInsets.only(left: 13, top: 50),
                   width: 4,
-                  height: 400,
+                  height: 300,
                   color: Colors.grey,
                 ),
                 Column(
                   children: [
                     statusWidget('confirmed', "Confirmé", true),
-                    statusWidget('onBoard2', "Ramassé", false),
-                    statusWidget('servicesImg', "Payé", false),
-                    statusWidget('shipped', "Envoyé", false),
+                    statusWidget('onBoard2', "Ramassé", true),
+                    statusWidget('servicesImg', "Payé", true),
                     statusWidget('Delivery', "Livré", false),
                   ],
                 )
@@ -81,59 +83,41 @@ class _trackOrderPageState extends State<trackOrderPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      border: Border.all(
-                        color: Colors.orange,
-                      )
+                InkWell(
+                  onTap: openHomePage,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        border: Border.all(
+                          color: Colors.orange,
+                        )
+                    ),
+                    child: Text("ANNULER", style: contentStyle.copyWith(
+                        color: Colors.orange
+                    ),),
+
+
                   ),
-                  child: Text("Annuler la commande", style: contentStyle.copyWith(
-                      color: Colors.orange
-                  ),),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-
-                    color: Colors.orange,
-
+                InkWell(
+                  onTap: openOrderPage,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      color: Colors.orange,
+                    ),
+                    child: Text("Mes commandes", style: contentStyle.copyWith(
+                        color: Colors.white
+                    ),),
                   ),
-                  child: Text("Mes commandes", style: contentStyle.copyWith(
-                      color: Colors.white
-                  ),),
                 ),
               ],
             ),
 
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.orange,
-        iconSize: 30,
-
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.track_changes),
-              label: "Track Order"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.view_list),
-              label: "My Orders"
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.track_changes),
-            label: "Profile",
-          ),
-        ],
       ),
     );
   }
@@ -146,7 +130,6 @@ class _trackOrderPageState extends State<trackOrderPage> {
           Container(
             height: 30,
             width: 30,
-
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (isActive) ? Colors.orange : Colors.white,
@@ -178,4 +161,15 @@ class _trackOrderPageState extends State<trackOrderPage> {
       ),
     );
   }
+
+  void openHomePage()
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+  }
+
+  void openOrderPage()
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderPage()));
+  }
+
 }

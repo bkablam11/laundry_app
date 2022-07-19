@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-
+import 'package:app/BarNavigation.dart';
 import 'LoginPage.dart';
 import 'package:app/StyleScheme.dart';
 
@@ -94,7 +94,8 @@ class _onboardingState extends State<onboarding> {
   }
   void changePage(){
     if(currentPage==4) {
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
+      // Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>MainNavigationn()));
     }
     else{
       _pageController.animateToPage(
