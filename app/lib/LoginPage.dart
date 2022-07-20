@@ -2,12 +2,79 @@ import 'package:flutter/material.dart';
 import 'SignUpPage.dart';
 import 'HomePage.dart';
 import 'package:app/StyleScheme.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:app/BarNavigation.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+//
+// Future<void> main() async{
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   runApp(LoginPage());
+// }
+
+
+
+
+//import 'package:app/user_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+// import 'HomePage.dart';
+// import 'LoginPage.dart';
+//
+//
+//
+//
+// class settings extends StatefulWidget {
+//
+//   @override
+//   State<settings> createState() => _settingsState();
+// }
+//
+// class _settingsState extends State<settings> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }
+//
+//
+// class SettingsFire extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) => Scaffold(
+//     body: StreamBuilder<User?>(
+//       stream: FirebaseAuth.instance.authStateChanges(),
+//       builder:(context, snapshot){
+//         if (snapshot.connectionState==ConnectionState.waiting){
+//           return Center (child: CircularProgressIndicator());
+//         }else if (snapshot.hasError){
+//           return Center(child: Text('quelque chose a mal tourné!'),);
+//         }else if (snapshot.hasData){
+//           return HomePage();
+//         } else{
+//           return LoginPage();
+//         }
+//       } ,
+//     ) ,
+//   )
+//   ;
+// }
+
+
+Future main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(LoginPage());
+}
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      //navigatorKey: navigatorKey,
       theme: ThemeData(
           fontFamily: 'roboto'
       ),
@@ -21,6 +88,19 @@ class loginPage extends StatefulWidget {
 }
 
 class _loginPageState extends State<loginPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final navigatorKey = GlobalKey<NavigatorState>;
+
+
+  @override
+  void dispose(){
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,11 +138,13 @@ class _loginPageState extends State<loginPage> {
                     ),),
                     SizedBox(height: 10,),
                     TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         labelText: "Email",
                       ),
                     ),
                     TextField(
+                      controller: passwordController,
                       decoration: InputDecoration(
                         labelText: "Mot de passe",
                       ),
@@ -77,7 +159,8 @@ class _loginPageState extends State<loginPage> {
                     ),
                     SizedBox(height: 30,),
                     InkWell(
-                      onTap: openHomePage,
+                      //onTap: openHomePage,
+                      onTap: signIn,
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 20),
                         width: MediaQuery.of(context).size.width,
@@ -199,6 +282,25 @@ class _loginPageState extends State<loginPage> {
   }
   void openHomePage()
   {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+    //Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>MainNavigationn()));
+  }
+  Future signIn() async{
+    showDialog(context: context,
+        barrierDismissible: false,
+        builder: (context)=> Center(child: CircularProgressIndicator(),)
+    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+    } on FirebaseAuthException catch (e){
+      print(e);
+    }
+
+    // Navigator.of(context) not working
+    //navigatorKey.currentState!.popUntil((route)=> route.isFirst);
+
   }
 }

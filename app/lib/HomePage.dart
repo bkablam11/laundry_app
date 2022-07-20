@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:app/StyleScheme.dart';
 import 'OrderPage.dart';
@@ -20,6 +21,8 @@ class homePage extends StatefulWidget {
 class _homePageState extends State<homePage> {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -63,6 +66,8 @@ class _homePageState extends State<homePage> {
                               style: TextStyle(
                               fontSize: 16,
                             ),),
+                            Text(user.email!,
+                            style:TextStyle(fontSize: 20),),
                           ],
                         )
                     ),

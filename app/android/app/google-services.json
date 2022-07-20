@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "904826180970",
+    "project_id": "laundy-fire-app",
+    "storage_bucket": "laundy-fire-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904826180970:android:84b9a0eec1765443370113",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904826180970-1c5diubn5ocqru5ln69oajlbfmtef44g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwoTYOIA8qP9585tYH1CX5Norn_IOl3E4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904826180970-1c5diubn5ocqru5ln69oajlbfmtef44g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
