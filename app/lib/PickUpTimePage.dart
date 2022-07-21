@@ -126,7 +126,7 @@ class _pickUpTimePageState extends State<pickUpTimePage> {
                   width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.symmetric(vertical: 20),
                   decoration: BoxDecoration(
-                      gradient: gradientStyle
+                    color: Color(0xFF5acc80),
                   ),
                   child: Center(
                     child: Text("ORDRE DE PAYEMENT", style: contentStyle.copyWith(
@@ -148,7 +148,7 @@ class _pickUpTimePageState extends State<pickUpTimePage> {
       margin: EdgeInsets.only(right: 10),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: (isActive) ? Colors.orange : Colors.grey.withOpacity(0.3),
+          color: (isActive) ? Color(0xFF5acc80) : Colors.grey.withOpacity(0.3),
           borderRadius: BorderRadius.all(Radius.circular(20))
       ),
       child: Column(
@@ -172,7 +172,7 @@ class _pickUpTimePageState extends State<pickUpTimePage> {
       margin: EdgeInsets.only(right: 10),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: (isActive) ? Colors.orange : Colors.grey.withOpacity(0.3),
+          color: (isActive) ? Color(0xFF5acc80) : Colors.grey.withOpacity(0.3),
           borderRadius: BorderRadius.all(Radius.circular(20))
       ),
       child: Column(

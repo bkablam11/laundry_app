@@ -24,7 +24,7 @@ class _orderPageState extends State<orderPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {},
         ),
         title: Text("VOTRE PANIER A LINGE", style: TextStyle(
@@ -44,7 +44,7 @@ class _orderPageState extends State<orderPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                categoryWidget("man", "Hommes", true),
+                categoryWidget("man", "Hommes", false),
                 categoryWidget("girl", "Femmes", false),
                 categoryWidget("child", "Enfants", false),
                 categoryWidget("oldman", "Autres", false),
@@ -57,7 +57,7 @@ class _orderPageState extends State<orderPage> {
                     clothWidget("cloth1", "Pantalon", "15"),
                     clothWidget("cloth2", "Jeans", "10"),
                     clothWidget("cloth4", "Chemise", "5"),
-                    clothWidget("cloth5", "T-Shirt", "7"),
+                    clothWidget("cloth5", "Autres", "7"),
                   ],
                 ),
               ),
@@ -83,7 +83,7 @@ class _orderPageState extends State<orderPage> {
                   padding: EdgeInsets.all(20),
                   height: 70,
                   decoration: BoxDecoration(
-                    gradient: gradientStyle,
+                    color: Color(0xFF5acc80),
                   ),
                   child: Center(
                     child: Text("CHOIX DATE ET HEURE", style: TextStyle(
@@ -128,17 +128,17 @@ class _orderPageState extends State<orderPage> {
                   children: [
                     Text("$name", style: headingStyle,),
                     Text("\$$price", style: headingStyle.copyWith(color: Colors.grey),),
-                    Text("Commentaires", style: contentStyle.copyWith(color: Colors.orange),)
+                    Text("Commentaires", style: contentStyle.copyWith(color: Color(0xFF5acc80),),)
                   ],
                 ),
-                Text("\F45", style: headingStyle,),
+                Text("\$50", style: headingStyle,),
                 Row(
                   children: [
                     Container(
                       height: 40,
                       width: 40,
                       decoration: BoxDecoration(
-                          gradient: gradientStyle,
+                          color: Color(0xFF5acc80),
                           shape: BoxShape.circle
                       ),
                       child: Center(
@@ -161,7 +161,7 @@ class _orderPageState extends State<orderPage> {
                       height: 40,
                       width: 40,
                       decoration: BoxDecoration(
-                          gradient: gradientStyle,
+                          color: Color(0xFF5acc80),
                           shape: BoxShape.circle
                       ),
                       child: Center(
@@ -197,7 +197,7 @@ class _orderPageState extends State<orderPage> {
           height: 70,
           width: 70,
           decoration: BoxDecoration(
-            color: (isActive) ? null : Colors.grey.withOpacity(0.3),
+            color: (isActive) ? Color(0xFF5acc80) : Color(0xFF5acc80).withOpacity(0.3),
             gradient: (isActive) ? gradientStyle : null,
             shape: BoxShape.circle,
           ),

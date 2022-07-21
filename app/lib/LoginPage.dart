@@ -1,72 +1,39 @@
+import 'package:app/HomePage.dart';
+import 'package:app/profil.dart';
 import 'package:flutter/material.dart';
 import 'SignUpPage.dart';
-import 'HomePage.dart';
-import 'package:app/StyleScheme.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:app/BarNavigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-//
-// Future<void> main() async{
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   runApp(LoginPage());
-// }
 
 
+class SettingsLogin extends StatefulWidget {
 
+  @override
+  _SettingsLoginState createState() => _SettingsLoginState();
+}
 
-//import 'package:app/user_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-
-// import 'HomePage.dart';
-// import 'LoginPage.dart';
-//
-//
-//
-//
-// class settings extends StatefulWidget {
-//
-//   @override
-//   State<settings> createState() => _settingsState();
-// }
-//
-// class _settingsState extends State<settings> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
-//
-//
-// class SettingsFire extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) => Scaffold(
-//     body: StreamBuilder<User?>(
-//       stream: FirebaseAuth.instance.authStateChanges(),
-//       builder:(context, snapshot){
-//         if (snapshot.connectionState==ConnectionState.waiting){
-//           return Center (child: CircularProgressIndicator());
-//         }else if (snapshot.hasError){
-//           return Center(child: Text('quelque chose a mal tourné!'),);
-//         }else if (snapshot.hasData){
-//           return HomePage();
-//         } else{
-//           return LoginPage();
-//         }
-//       } ,
-//     ) ,
-//   )
-//   ;
-// }
-
-
-Future main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(LoginPage());
+class _SettingsLoginState extends State<SettingsLogin> {
+  // Initialize Firebase App
+  Future<FirebaseApp> _initializeFirebase() async {
+    FirebaseApp firebaseApp =  await Firebase.initializeApp();
+    return firebaseApp;
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: FutureBuilder(
+        future: _initializeFirebase(),
+        builder: (context, snapshot){
+          if (snapshot.connectionState == ConnectionState.done){
+            return LoginPage();
+          }
+          return const Center(child: CircularProgressIndicator(),
+          );
+        },
+      ) ,
+    );
+  }
 }
 
 class LoginPage extends StatelessWidget {
@@ -74,7 +41,6 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //navigatorKey: navigatorKey,
       theme: ThemeData(
           fontFamily: 'roboto'
       ),
@@ -88,21 +54,29 @@ class loginPage extends StatefulWidget {
 }
 
 class _loginPageState extends State<loginPage> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final navigatorKey = GlobalKey<NavigatorState>;
 
-
-  @override
-  void dispose(){
-    emailController.dispose();
-    passwordController.dispose();
-
-    super.dispose();
+  //login function
+  static Future<User?> loginUsingEmailPassword({required String email, required String password, required BuildContext context})async{
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try{
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+      user = userCredential.user;
+  } on FirebaseAuthException catch (e){
+      if(e.code == "user-not-found"){
+        print("Aucun utilisateur trouvé pour cet email");
+    }
   }
+
+  return user;
+}
 
   @override
   Widget build(BuildContext context) {
+    // create the textfiled Controller
+    TextEditingController _emailTextController = TextEditingController();
+    TextEditingController _passwordTextController = TextEditingController();
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(20),
@@ -115,7 +89,7 @@ class _loginPageState extends State<loginPage> {
               width: 70,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('asset/images/logo.png')
+                      image: AssetImage('asset/images/logo1.png')
                   )
               ),
             ),
@@ -126,26 +100,30 @@ class _loginPageState extends State<loginPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Bienvenue !", style: TextStyle(
-                        color: Colors.orange,
+                        color: Color(0xFF5acc80),
                         fontSize: 30,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'sfpro'
-                    ),),
+                    ),textAlign: TextAlign.center,),
                     Text("Veuillez vous connecter à votre compte", style: TextStyle(
                       color: Colors.grey,
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
-                    ),),
+                    ),textAlign: TextAlign.center,),
                     SizedBox(height: 10,),
                     TextField(
-                      controller: emailController,
-                      decoration: InputDecoration(
+                      controller: _emailTextController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        prefixIcon:Icon(Icons.mail, color: Colors.black),
                         labelText: "Email",
                       ),
                     ),
                     TextField(
-                      controller: passwordController,
-                      decoration: InputDecoration(
+                      controller:_passwordTextController,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        prefixIcon:Icon(Icons.lock, color: Colors.black),
                         labelText: "Mot de passe",
                       ),
                     ),
@@ -160,20 +138,23 @@ class _loginPageState extends State<loginPage> {
                     SizedBox(height: 30,),
                     InkWell(
                       //onTap: openHomePage,
-                      onTap: signIn,
+                      onTap:() async{
+                        // let's test the app
+                        User? user = await loginUsingEmailPassword(email: _emailTextController.text, password: _passwordTextController.text, context: context);
+                        print(user);
+                        if(user!=null){
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>MainNavigationn()));
+                        };
+                      } ,
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 20),
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(40)),
-                            gradient: LinearGradient(
-                                colors: [Color(0xfff3953b), Color(0xffe57509)],
-                                stops: [0,1],
-                                begin: Alignment.topCenter
-                            )
+                            color: Color(0xFF5acc80),
                         ),
                         child: Center(
-                          child: Text("CONNEXION", style: TextStyle(
+                          child:const Text("CONNEXION", style: TextStyle(
                               color: Colors.white,
                               fontSize: 22,
                               fontWeight: FontWeight.w700,
@@ -260,13 +241,15 @@ class _loginPageState extends State<loginPage> {
                     fontSize: 16,
                     fontFamily: 'sfpro'
                 ),),
-                InkWell(
-                  onTap: openSignUpPage,
-                  child: Text(" S'ENREGISTRER", style: TextStyle(
-                      color: Colors.orange,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700
-                  ),),
+                SingleChildScrollView(
+                  child: InkWell(
+                    onTap: openSignUpPage,
+                    child: Text(" S'ENREGISTRER", style: TextStyle(
+                        color: Color(0xFF5acc80),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700
+                    ),),
+                  ),
                 )
               ],
             ),
@@ -284,23 +267,5 @@ class _loginPageState extends State<loginPage> {
   {
     //Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
     Navigator.push(context, MaterialPageRoute(builder: (context)=>MainNavigationn()));
-  }
-  Future signIn() async{
-    showDialog(context: context,
-        barrierDismissible: false,
-        builder: (context)=> Center(child: CircularProgressIndicator(),)
-    );
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-    } on FirebaseAuthException catch (e){
-      print(e);
-    }
-
-    // Navigator.of(context) not working
-    //navigatorKey.currentState!.popUntil((route)=> route.isFirst);
-
   }
 }

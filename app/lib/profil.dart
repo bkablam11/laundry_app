@@ -8,6 +8,8 @@ class ProfilPage extends StatefulWidget {
 class _ProfilPageState extends State<ProfilPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(child: Text("Bienvenue sur votre page de profil"),),
+    );
   }
 }

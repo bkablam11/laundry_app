@@ -9,19 +9,6 @@ import 'package:firebase_core/firebase_core.dart';
 
 import 'alluser_page.dart';
 
-// Future<void> main() async{
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   runApp(SignUpPage());
-// }
-
-Future main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(SignUpPage());
-
-}
-
 
 class SignUpPage extends StatelessWidget {
   @override
@@ -40,13 +27,6 @@ class signUpPage extends StatefulWidget {
 class _signUpPageState extends State<signUpPage> {
   @override
   Widget build(BuildContext context) {
-    // final _ctrname = TextEditingController();
-    // final _ctrsurname = TextEditingController();
-    // final _ctrcontact = TextEditingController();
-    // final _ctremail = TextEditingController();
-    // final _ctrpassword = TextEditingController();
-    // final _ctrretry_password = TextEditingController();
-
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(20),
@@ -59,7 +39,7 @@ class _signUpPageState extends State<signUpPage> {
               width: 70,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('asset/images/logo.png')
+                      image: AssetImage('asset/images/logo1.png')
                   )
               ),
             ),
@@ -70,7 +50,7 @@ class _signUpPageState extends State<signUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("S'enregistrer", style: TextStyle(
-                        color: Colors.orange,
+                        color: Color(0xFF5acc80),
                         fontSize: 30,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'sfpro'
@@ -80,6 +60,7 @@ class _signUpPageState extends State<signUpPage> {
                       //controller: _ctrname,
                       decoration: InputDecoration(
                         labelText: "Nom",
+                        prefixIcon:Icon(Icons.account_circle, color: Colors.black),
                       ),
                     ),
                     SizedBox(height: 10,),
@@ -87,59 +68,48 @@ class _signUpPageState extends State<signUpPage> {
                       //controller: _ctrsurname,
                       decoration: InputDecoration(
                         labelText: "Prénoms",
+                        prefixIcon:Icon(Icons.account_circle, color: Colors.black),
                       ),
                     ),
                     TextField(
                       //controller: _ctrcontact,
                       decoration: InputDecoration(
                         labelText: "N° de téléphone",
+                        prefixIcon:Icon(Icons.phone_iphone, color: Colors.black),
                       ),
                     ),
                     TextField(
                       //controller: _ctremail,
                       decoration: InputDecoration(
                         labelText: "Email",
+                        prefixIcon:Icon(Icons.email, color: Colors.black),
                       ),
                     ),
                     TextField(
                       //controller: _ctrpassword,
                       decoration: InputDecoration(
                         labelText: "Mot de passe ",
+                        prefixIcon:Icon(Icons.lock, color: Colors.black),
                       ),
                     ),
                     TextField(
                       //controller: _ctrretry_password,
                       decoration: InputDecoration(
                         labelText: "Confirmer le Mot de passe",
+                        prefixIcon:Icon(Icons.lock, color: Colors.black),
                       ),
                     ),
                     SizedBox(height: 30,),
-                    ElevatedButton(
-                      onPressed: (){
-                        // final user=User(name: _ctrname.text,
-                        //     surname: _ctrsurname.text,
-                        //     contact: _ctrcontact.text,
-                        //     email: _ctremail.text,
-                        //     password: _ctrpassword.text,
-                        //     retry_password: _ctrretry_password.text) ;
-                        // addUser(user);
-                        // _ctrname.text='';
-                        // _ctrsurname.text='';
-                        // _ctrcontact.text='';
-                        // _ctremail.text='';
-                        // _ctrpassword.text='';
-                        // _ctrretry_password.text='';
-                      },
+
+                    InkWell(
+                      //onTap: openHomePage,
+                      onTap: openLoginPage,
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 20),
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(40)),
-                            gradient: LinearGradient(
-                                colors: [Color(0xfff3953b), Color(0xffe57509)],
-                                stops: [0,1],
-                                begin: Alignment.topCenter
-                            )
+                            color: Color(0xFF5acc80),
                         ),
                         child: Center(
                           child: Text("S'enregistrer", style: TextStyle(
@@ -149,9 +119,6 @@ class _signUpPageState extends State<signUpPage> {
                               fontFamily: 'sfpro'
                           ),),
                         ),
-                        // width: double.infinity,
-                        // child: Icon(Icons.add,
-                        //   size: 32,),),
                       ),
                     ),
                     SizedBox(height: 10,),
@@ -172,7 +139,7 @@ class _signUpPageState extends State<signUpPage> {
                 InkWell(
                   onTap: openLoginPage,
                   child: Text(" CONNEXION", style: TextStyle(
-                      color: Colors.orange,
+                      color: Color(0xFF5acc80),
                       fontSize: 16,
                       fontWeight: FontWeight.w700
                   ),),

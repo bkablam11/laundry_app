@@ -90,11 +90,11 @@ class _trackOrderPageState extends State<trackOrderPage> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         border: Border.all(
-                          color: Colors.orange,
+                          color: Color(0xFF5acc80),
                         )
                     ),
                     child: Text("ANNULER", style: contentStyle.copyWith(
-                        color: Colors.orange
+                        color: Color(0xFF5acc80),
                     ),),
 
 
@@ -106,7 +106,7 @@ class _trackOrderPageState extends State<trackOrderPage> {
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color: Colors.orange,
+                        color: Color(0xFF5acc80),
                     ),
                     child: Text("Mes commandes", style: contentStyle.copyWith(
                         color: Colors.white
@@ -132,9 +132,9 @@ class _trackOrderPageState extends State<trackOrderPage> {
             width: 30,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: (isActive) ? Colors.orange : Colors.white,
+                color: (isActive) ? Color(0xFF5acc80) : Colors.white,
                 border: Border.all(
-                    color: (isActive) ? Colors.transparent : Colors.orange,
+                    color: (isActive) ? Colors.transparent : Color(0xFF5acc80),
                     width: 3
                 )
             ),
@@ -153,7 +153,7 @@ class _trackOrderPageState extends State<trackOrderPage> {
                 ),
               ),
               Text(status, style: contentStyle.copyWith(
-                  color: (isActive) ? Colors.orange : Colors.black
+                  color: (isActive) ? Color(0xFF5acc80) : Colors.black
               ),)
             ],
           )

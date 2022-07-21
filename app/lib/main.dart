@@ -6,12 +6,12 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-Future main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
-
 }
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -30,11 +30,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 3), OpenOnBoard);
+    Timer(Duration(seconds: 5), OpenOnBoard);
   }
   @override
   Widget build(BuildContext context) {
@@ -49,11 +50,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         child: Center(
           child: Container(
-            height: 200,
-            width: 200,
+            height: 300,
+            width: 300,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("asset/images/logo.png")
+                image: AssetImage("asset/images/logo1.png")
               )
             ),
           ),
@@ -64,56 +65,4 @@ class _MyHomePageState extends State<MyHomePage> {
   void OpenOnBoard(){
     Navigator.push(context, MaterialPageRoute(builder: (context)=>Onboarding()),);
   }
-}
-
-
-
-class Settings extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    body: StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder:(context, snapshot){
-        if (snapshot.connectionState==ConnectionState.waiting){
-          return Center (child: CircularProgressIndicator());
-        }else if (snapshot.hasError){
-          return Center(child: Text('quelque chose a mal tourné!'),);
-        }else if (snapshot.hasData){
-          return HomePage();
-        } else{
-          return LoginPage();
-        }
-      } ,
-    ) ,
-  )
-  ;
-}
-
-
-class settingsPage extends StatefulWidget {
-
-  @override
-  _settingsPageState createState() => _settingsPageState();
-}
-
-class _settingsPageState extends State<settingsPage> {
-  @override
-  Widget build(BuildContext context) =>
-      Scaffold(
-        body: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return Center(child: Text('quelque chose a mal tourné!'),);
-            } else if (snapshot.hasData) {
-              return HomePage();
-            } else {
-              return LoginPage();
-            }
-          },
-        ),
-      );
-
 }

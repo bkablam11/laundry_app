@@ -21,7 +21,6 @@ class homePage extends StatefulWidget {
 class _homePageState extends State<homePage> {
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
 
     return Scaffold(
       appBar: AppBar(
@@ -66,8 +65,6 @@ class _homePageState extends State<homePage> {
                               style: TextStyle(
                               fontSize: 16,
                             ),),
-                            Text(user.email!,
-                            style:TextStyle(fontSize: 20),),
                           ],
                         )
                     ),
@@ -117,7 +114,7 @@ class _homePageState extends State<homePage> {
                             onTap: openOrderPage,
                             child: Container(
                               decoration: BoxDecoration(
-                                  gradient:gradientStyle,
+                                  color: Color(0xFF5acc80),
                                   borderRadius: BorderRadius.all(Radius.circular(20))
                               ),
                               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),

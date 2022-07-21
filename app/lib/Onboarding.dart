@@ -75,11 +75,7 @@ class _onboardingState extends State<onboarding> {
                 margin: EdgeInsets.only(bottom: 30),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                    colors: [Color(0xfff3953b), Color(0xffe57509)],
-                    stops: [0,1],
-                    begin: Alignment.topCenter
-                  )
+                    color: Color(0xFF5acc80),
                 ),
                 child: Icon(
                   Icons.arrow_forward,
@@ -120,7 +116,7 @@ class _onboardingState extends State<onboarding> {
       margin: EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5)),
-        color: (currentPage== pageNo) ? Colors.orange: Colors.grey
+        color: (currentPage== pageNo) ? Color(0xFF5acc80): Colors.grey
       ),
     );
   }
@@ -145,7 +141,8 @@ class _onboardingState extends State<onboarding> {
             fontSize: 30,
             fontFamily: 'roboto',
             fontWeight: FontWeight.w500,
-          ),),
+          ),textAlign: TextAlign.center,
+          ),
         ),
         Container(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),

@@ -62,7 +62,7 @@ class _orderConfirmPageState extends State<orderConfirmPage> {
                 Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      gradient: gradientStyle,
+                      color: Color(0xFF5acc80),
                       borderRadius: BorderRadius.all(Radius.circular(10))
                   ),
                   child: Text("1001", style: headingStyle.copyWith(
@@ -118,7 +118,7 @@ class _orderConfirmPageState extends State<orderConfirmPage> {
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.symmetric(vertical: 20),
                 decoration: BoxDecoration(
-                    gradient: gradientStyle
+                  color: Color(0xFF5acc80),
                 ),
                 child: Center(
                   child: Text("SUIVRE COMMANDE", style: contentStyle.copyWith(
