@@ -27,7 +27,7 @@ class _orderPageState extends State<orderPage> {
           icon: Icon(Icons.arrow_back),
           onPressed: () {},
         ),
-        title: Text("VOTRE PANIER A LINGE", style: TextStyle(
+        title: Text("VOTRE PANIER ", style: TextStyle(
             color: Colors.black
         ),),
         actions: [
@@ -47,7 +47,6 @@ class _orderPageState extends State<orderPage> {
                 categoryWidget("man", "Hommes", false),
                 categoryWidget("girl", "Femmes", false),
                 categoryWidget("child", "Enfants", false),
-                categoryWidget("oldman", "Autres", false),
               ],
             ),
             Expanded(
@@ -131,7 +130,7 @@ class _orderPageState extends State<orderPage> {
                     Text("Commentaires", style: contentStyle.copyWith(color: Color(0xFF5acc80),),)
                   ],
                 ),
-                Text("\$50", style: headingStyle,),
+                //Text("\$50", style: headingStyle,),
                 Row(
                   children: [
                     Container(

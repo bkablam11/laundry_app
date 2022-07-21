@@ -132,7 +132,7 @@ class _signUpPageState extends State<signUpPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Vous avez déjà un compte ?", style: TextStyle(
+                Text("Se Connecter ?", style: TextStyle(
                     fontSize: 16,
                     fontFamily: 'sfpro'
                 ),),

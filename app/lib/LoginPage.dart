@@ -237,7 +237,7 @@ class _loginPageState extends State<loginPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Vous n'avez pas de compte ?", style: TextStyle(
+                Text("Pas de Compte ?", style: TextStyle(
                     fontSize: 16,
                     fontFamily: 'sfpro'
                 ),),

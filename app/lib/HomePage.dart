@@ -61,10 +61,14 @@ class _homePageState extends State<homePage> {
                           children: [
                             Text("NOTRE CREDO", style: headingStyle),
                             SizedBox(height: 5,),
-                            Text("Vos vêtements, Notre Priorité",
+                            Text("Vos vêtements, ",
                               style: TextStyle(
                               fontSize: 16,
                             ),),
+                            Text("Notre Priorité",
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),),
                           ],
                         )
                     ),
