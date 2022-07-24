@@ -1,14 +1,6 @@
-import 'package:app/user_model.dart';
+
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
-import 'package:app/StyleScheme.dart';
-import 'dart:async';
-import 'package:app/user_repo_fire.dart';
-
-import 'package:firebase_core/firebase_core.dart';
-
-import 'alluser_page.dart';
-
 
 class SignUpPage extends StatelessWidget {
   @override

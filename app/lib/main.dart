@@ -1,11 +1,10 @@
-import 'package:app/HomePage.dart';
-import 'package:app/LoginPage.dart';
+
 import 'package:flutter/material.dart';
 import 'Onboarding.dart';
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
+//initialization Firebase Auth
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
