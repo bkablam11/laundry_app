@@ -1,10 +1,14 @@
 import 'package:app/HomePage.dart';
 import 'package:app/profil.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'GoogleAuth.dart';
 import 'SignUpPage.dart';
 import 'package:app/BarNavigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'forgot.password.dart';
 
 
 class SettingsLogin extends StatefulWidget {
@@ -48,12 +52,15 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+
+
 class loginPage extends StatefulWidget {
   @override
   _loginPageState createState() => _loginPageState();
 }
 
 class _loginPageState extends State<loginPage> {
+
 
   //login function
   static Future<User?> loginUsingEmailPassword({required String email, required String password, required BuildContext context})async{
@@ -70,6 +77,8 @@ class _loginPageState extends State<loginPage> {
 
   return user;
 }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -130,9 +139,15 @@ class _loginPageState extends State<loginPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text("Mot de passe oublié ?", style: TextStyle(
-                            color: Colors.grey
-                        ),),
+                        GestureDetector(
+                          child: Text("Mot de passe oublié ?", style: TextStyle(
+                              color: Colors.grey,
+                            decoration: TextDecoration.underline,
+                            fontSize: 15,
+                          ),
+                          ),
+                          onTap: ()=> Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ForgotPasswordPage())),
+                        ),
                       ],
                     ),
                     SizedBox(height: 30,),
@@ -164,72 +179,77 @@ class _loginPageState extends State<loginPage> {
                       ),
                     ),
                     SizedBox(height: 20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 1,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        Center(
-                          child: Container(
-                              padding: EdgeInsets.all(10),
-                              child: Text("OU")
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: 1,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Expanded(
+                    //       child: Container(
+                    //         height: 1,
+                    //         color: Colors.grey,
+                    //       ),
+                    //     ),
+                    //     Center(
+                    //       child: Container(
+                    //           padding: EdgeInsets.all(10),
+                    //           child: Text("OU")
+                    //       ),
+                    //     ),
+                    //     Expanded(
+                    //       child: Container(
+                    //         height: 1,
+                    //         color: Colors.grey,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     SizedBox(height: 20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: Colors.black,
-                                  width: 0.5
-                              )
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage('asset/images/googleLogo.png')
-                                )
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 20,),
-                        Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: Colors.black,
-                                  width: 0.5
-                              )
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage('asset/images/fbLogo.png')
-                                )
-                            ),
-                          ),
-                        )
-                      ],
-                    )
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     GestureDetector(
+                    //       child: Container(
+                    //         height: 60,
+                    //         width: 60,
+                    //         decoration: BoxDecoration(
+                    //             shape: BoxShape.circle,
+                    //             border: Border.all(
+                    //                 color: Colors.black,
+                    //                 width: 0.5
+                    //             )
+                    //         ),
+                    //         child: Container(
+                    //           decoration: BoxDecoration(
+                    //               image: DecorationImage(
+                    //                   image: AssetImage('asset/images/googleLogo.png')
+                    //               )
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       onTap: (){
+                    //         Navigator.push(context, MaterialPageRoute(builder: (context)=>GoogleAuth()));
+                    //       },
+                    //     ),
+                    //     SizedBox(width: 20,),
+                    //     // Container(
+                    //     //   height: 60,
+                    //     //   width: 60,
+                    //     //   decoration: BoxDecoration(
+                    //     //       shape: BoxShape.circle,
+                    //     //       border: Border.all(
+                    //     //           color: Colors.black,
+                    //     //           width: 0.5
+                    //     //       )
+                    //     //   ),
+                    //     //   child: Container(
+                    //     //     decoration: BoxDecoration(
+                    //     //         image: DecorationImage(
+                    //     //             image: AssetImage('asset/images/fbLogo.png')
+                    //     //         )
+                    //     //     ),
+                    //     //   ),
+                    //     // )
+                    //   ],
+                    // )
                   ],
                 ),
               ),
@@ -259,13 +279,15 @@ class _loginPageState extends State<loginPage> {
       ),
     );
   }
+
+
   void openSignUpPage()
   {
     Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpPage()));
   }
-  void openHomePage()
-  {
-    //Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>MainNavigationn()));
-  }
+  // void openHomePage()
+  // {
+  //   //Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+  //   Navigator.push(context, MaterialPageRoute(builder: (context)=>MainNavigationn()));
+  // }
 }

@@ -1,3 +1,4 @@
+import 'package:app/profil.dart';
 import 'package:flutter/material.dart';
 import 'package:app/TrackOrderPage.dart';
 import 'package:app/OrderPage.dart';
@@ -16,6 +17,7 @@ class _MainNavigationnState extends State<MainNavigationn> {
     HomePage(),
     OrderPage(),
     TrackOrderPage(),
+    ProfilPage(email: ''),
   ];
 
   @override
@@ -23,7 +25,10 @@ class _MainNavigationnState extends State<MainNavigationn> {
     Icon(Icons.home, size: 30,),
     Icon(Icons.view_list, size: 30,),
     Icon(Icons.track_changes, size: 30,),
+    Icon(Icons.person_outline, size: 30,),
   ];
+
+
   Widget build(BuildContext context) => Scaffold(
 
     body:screens[index],

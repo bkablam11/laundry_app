@@ -1,11 +1,13 @@
 
+import 'package:app/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'LoginPage.dart';
 
 class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: signUpPage(),
     );
@@ -19,6 +21,14 @@ class signUpPage extends StatefulWidget {
 class _signUpPageState extends State<signUpPage> {
   @override
   Widget build(BuildContext context) {
+    // var  _ctrname = TextEditingController();
+    // var  _ctrsurname = TextEditingController();
+    // var  _ctrcontact = TextEditingController();
+    var  _ctremail = TextEditingController();
+    var  _ctrpassword = TextEditingController();
+    // var  _ctrretry_password = TextEditingController();
+
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(20),
@@ -47,55 +57,67 @@ class _signUpPageState extends State<signUpPage> {
                         fontWeight: FontWeight.w700,
                         fontFamily: 'sfpro'
                     ),),
-                    SizedBox(height: 10,),
+                    // SizedBox(height: 10,),
+                    // TextField(
+                    //   //controller: _ctrname,
+                    //   decoration: InputDecoration(
+                    //     labelText: "Nom",
+                    //     prefixIcon:Icon(Icons.account_circle, color: Colors.black),
+                    //   ),
+                    // ),
+                    // SizedBox(height: 10,),
+                    // TextField(
+                    //   //controller: _ctrsurname,
+                    //   decoration: InputDecoration(
+                    //     labelText: "Prénoms",
+                    //     prefixIcon:Icon(Icons.account_circle, color: Colors.black),
+                    //   ),
+                    // ),
+                    // TextField(
+                    //   //controller: _ctrcontact,
+                    //   decoration: InputDecoration(
+                    //     labelText: "N° de téléphone",
+                    //     prefixIcon:Icon(Icons.phone_iphone, color: Colors.black),
+                    //   ),
+                    // ),
                     TextField(
-                      //controller: _ctrname,
-                      decoration: InputDecoration(
-                        labelText: "Nom",
-                        prefixIcon:Icon(Icons.account_circle, color: Colors.black),
-                      ),
-                    ),
-                    SizedBox(height: 10,),
-                    TextField(
-                      //controller: _ctrsurname,
-                      decoration: InputDecoration(
-                        labelText: "Prénoms",
-                        prefixIcon:Icon(Icons.account_circle, color: Colors.black),
-                      ),
-                    ),
-                    TextField(
-                      //controller: _ctrcontact,
-                      decoration: InputDecoration(
-                        labelText: "N° de téléphone",
-                        prefixIcon:Icon(Icons.phone_iphone, color: Colors.black),
-                      ),
-                    ),
-                    TextField(
-                      //controller: _ctremail,
+                      controller: _ctremail,
                       decoration: InputDecoration(
                         labelText: "Email",
                         prefixIcon:Icon(Icons.email, color: Colors.black),
                       ),
                     ),
                     TextField(
-                      //controller: _ctrpassword,
+                      controller: _ctrpassword,
+                      obscureText: true,
                       decoration: InputDecoration(
                         labelText: "Mot de passe ",
-                        prefixIcon:Icon(Icons.lock, color: Colors.black),
+                        prefixIcon:Icon(Icons.password, color: Colors.black),
                       ),
                     ),
-                    TextField(
-                      //controller: _ctrretry_password,
-                      decoration: InputDecoration(
-                        labelText: "Confirmer le Mot de passe",
-                        prefixIcon:Icon(Icons.lock, color: Colors.black),
-                      ),
-                    ),
-                    SizedBox(height: 30,),
+                    // TextField(
+                    //   //controller: _ctrretry_password,
+                    //   decoration: InputDecoration(
+                    //     labelText: "Confirmer le Mot de passe",
+                    //     prefixIcon:Icon(Icons.lock, color: Colors.black),
+                    //   ),
+                    // ),
+                    // SizedBox(height: 30,),
 
-                    InkWell(
-                      //onTap: openHomePage,
-                      onTap: openLoginPage,
+                    //InkWell(
+                    SizedBox(height: 50,),
+                    SizedBox(height: 50,),
+                    GestureDetector(
+                      //onTap: openLoginPage,
+                      onTap: (){
+                        AuthController.instance.register(_ctremail.text.trim(), _ctrpassword.text.trim());
+                        // Get.snackbar("Inscription "," Effectuée",
+                        //   backgroundColor: Colors.redAccent,
+                        //   snackPosition: SnackPosition.TOP,
+                        //   titleText: Text("Connexion", style: TextStyle(color: Colors.white,),),
+                        //   duration: Duration(seconds: 5),
+                        // );
+                      },
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 20),
                         width: MediaQuery.of(context).size.width,
